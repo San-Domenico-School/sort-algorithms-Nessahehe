@@ -69,8 +69,8 @@ public class Dealer extends Actor
      * cards from the shuffled list and adding them to the sorted list.     
     **/
     
-    /* If any element is smaller than the current minimum, update the minimum.
-     * 
+    /* Compare 1st unsorted element to the entire array.
+     * Swap it with smallest remaining element.
      * 
      * 
      */
@@ -81,7 +81,7 @@ public class Dealer extends Actor
     int minIndex = i;
     for (int j = i + 1; j < n; j++) 
     {
-        // Assuming Card has a property called 'value' for comparison
+        // Comparing value
         if (arr[j].getValue() < arr[minIndex].getValue()) 
         {
                 minIndex = j;
@@ -107,19 +107,19 @@ public class Dealer extends Actor
      */
     private Card[] insertionSort(Card[] arr, int n) 
     {
-    for (int i = 1; i < n; i++) 
-    {
-        Card key = arr[i];
-        int j = i - 1;
-        while (j >= 0 && arr[j].getValue() > key.getValue()) 
+        for (int i = 1; i < n; i++) 
         {
-            arr[j + 1] = arr[j];
-            j = j - 1;
+            Card key = arr[i];
+            int j = i - 1;
+            while (j >= 0 && arr[j].getValue() > key.getValue()) 
+            {
+                arr[j + 1] = arr[j];
+                j = j - 1;
+            }
+            arr[j + 1] = key;
         }
-        arr[j + 1] = key;
+        return arr;
     }
-    return arr;
-    } 
     
     /* In this space write the pseudocode for your merge sort
      * 
